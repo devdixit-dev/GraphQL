@@ -1,0 +1,6 @@
+Fastify → high performance server
+Mercurius → Fastify’s official GraphQL adapter
+Drizzle ORM → type-safe SQL
+pg → PostgreSQL driver
+zod → validation (production must-have)
+
