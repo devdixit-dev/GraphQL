@@ -4,3 +4,47 @@ Drizzle ORM → type-safe SQL
 pg → PostgreSQL driver
 zod → validation (production must-have)
 
+Query -> read data
+Mutation -> change data
+Type -> shape of data
+
+Type: data structure like TypeScript interface
+type User {
+  id: Int!
+  name: String!
+  email: String!
+}
+
+Query: reading data (equal to GET)
+type Query {
+  users: [User!]!
+}
+
+  - How frontend calls it?
+  query {
+    users {
+      id
+      name
+    }
+  }
+
+Mutation: changing data (equal to POST, PUT & DELETE)
+type Mutation {
+  createUser(name: String!, email: String!): User!
+}
+
+| Concept     | REST  | GraphQL  |
+| ----------- | ----- | -------- |
+| Fetch data  | GET   | Query    |
+| Create data | POST  | Mutation |
+| Endpoint    | Many  | Single   |
+| Response    | Fixed | Flexible |
+
+Type → structure of data
+Query → read data
+Mutation → change data
+Resolver → actual logic
+
+Queries → pagination, filtering
+Mutations → validation + auth + transactions
+Types → reused across modules

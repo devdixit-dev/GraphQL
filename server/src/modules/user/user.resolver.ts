@@ -1,0 +1,14 @@
+import { userService } from './user.service';
+
+export const userResolvers = {
+  Query: {
+    users: async () => {
+      return userService.getUsers();
+    }
+  },
+  Mutation: {
+    createUser: async (_: any, args: { name: string; email: string }) => {
+      return userService.createUser(args.name, args.email);
+    }
+  }
+};
