@@ -9,6 +9,10 @@ export const userResolvers = {
   Mutation: {
     createUser: async (_: any, args: { name: string; email: string }) => {
       return userService.createUser(args.name, args.email);
+    },
+
+    updateUser: async (_: any, args: { id: number, name: string }) => {
+      return userService.updateUser(args.id, args.name);
     }
   }
 };

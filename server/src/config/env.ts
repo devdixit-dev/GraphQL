@@ -1,7 +1,5 @@
-import dotenv from 'dotenv';
+import 'dotenv/config'
 import { z } from 'zod';
-
-dotenv.config();
 
 const envSchema = z.object({
   PORT: z.string().default("5000"),
