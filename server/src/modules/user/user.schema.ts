@@ -12,5 +12,6 @@ export const userSchema = `
   type Mutation {
     createUser(name: String!, email: String!): User!
     updateUser(id: Int!, name: String): User!
+    deleteUser(id: Int!): User!
   }
 `;

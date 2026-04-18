@@ -1,0 +1,20 @@
+query {
+  users {
+    id
+    name
+    email
+  }
+}
+- query with users table and field name
+
+mutation {
+  createUser(
+    name: "Dev",
+    email: "dev@test.com"
+  )
+  {
+    id
+    name
+  }
+}
+- mutation with service name and value, returning the id and name data to the client

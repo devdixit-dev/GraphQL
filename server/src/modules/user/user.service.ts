@@ -21,4 +21,9 @@ export const userService = {
     return updated[0]
     // return the first row of updated data
   },
+
+  async deleteUser(id: number) {
+    const deleted = await db.delete(users).where(eq(users.id, id)).returning();
+    return deleted[0]
+  }
 };

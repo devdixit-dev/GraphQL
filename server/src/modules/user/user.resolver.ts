@@ -13,6 +13,10 @@ export const userResolvers = {
 
     updateUser: async (_: any, args: { id: number, name: string }) => {
       return userService.updateUser(args.id, args.name);
+    },
+
+    deleteUser: async (_: any, args: { id: number }) => {
+      return userService.deleteUser(args.id);
     }
   }
 };
