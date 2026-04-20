@@ -5,6 +5,8 @@ import { userResolvers } from './modules/user/user.resolver';
 import { taskSchema } from './modules/task/task.schema';
 import { taskResolvers } from './modules/task/task.resolver';
 
+import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
+
 export const buildApp = () => {
   const app = Fastify({
     logger: {
@@ -20,9 +22,12 @@ export const buildApp = () => {
     }
   });
 
+  const schema = mergeTypeDefs([userSchema, taskSchema]);
+  const resolvers = mergeResolvers([userResolvers, taskResolvers]);
+
   app.register(mercurius, {
-    schema: userSchema,
-    resolvers: userResolvers,
+    schema,
+    resolvers,
     graphiql: true // disable in production
   });
 
