@@ -25,17 +25,23 @@ export function App() {
     setError('');
     setLoading(true);
 
-    try {
-      const [usersResult, tasksResult] = await Promise.all([getUsers(), getTasks()]);
-      setData({
-        users: usersResult.users,
-        tasks: tasksResult.tasks
-      });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not load GraphQL data');
-    } finally {
-      setLoading(false);
+    const [usersResult, tasksResult] = await Promise.allSettled([getUsers(), getTasks()]);
+
+    setData({
+      users: usersResult.status === 'fulfilled' ? usersResult.value.users : [],
+      tasks: tasksResult.status === 'fulfilled' ? tasksResult.value.tasks : []
+    });
+
+    if (usersResult.status === 'rejected' || tasksResult.status === 'rejected') {
+      const message = [usersResult, tasksResult]
+        .filter((result) => result.status === 'rejected')
+        .map((result) => (result.reason instanceof Error ? result.reason.message : 'Could not load GraphQL data'))
+        .join(', ');
+
+      setError(message);
     }
+
+    setLoading(false);
   }
 
   useEffect(() => {

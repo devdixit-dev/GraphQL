@@ -6,6 +6,7 @@ import { taskSchema } from './modules/task/task.schema';
 import { taskResolvers } from './modules/task/task.resolver';
 
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
+import { print } from 'graphql';
 
 export const buildApp = () => {
   const app = Fastify({
@@ -22,7 +23,7 @@ export const buildApp = () => {
     }
   });
 
-  const schema = mergeTypeDefs([userSchema, taskSchema]);
+  const schema = print(mergeTypeDefs([userSchema, taskSchema]));
   const resolvers = mergeResolvers([userResolvers, taskResolvers]);
 
   app.register(mercurius as any, {
