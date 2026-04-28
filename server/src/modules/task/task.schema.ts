@@ -12,7 +12,7 @@ export const taskSchema = `
   
   type Mutation {
     createTask(name: String!, desc: String!, owner: Int!): Task!
-    updateTask(owner: Int!, name: String, desc: String): Task!
-    deleteTask(id: Int!)
+    updateTask(id: Int!, name: String, desc: String): Task!
+    deleteTask(id: Int!): Task!
   }
 `;

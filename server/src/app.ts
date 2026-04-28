@@ -25,7 +25,7 @@ export const buildApp = () => {
   const schema = mergeTypeDefs([userSchema, taskSchema]);
   const resolvers = mergeResolvers([userResolvers, taskResolvers]);
 
-  app.register(mercurius, {
+  app.register(mercurius as any, {
     schema,
     resolvers,
     graphiql: true // disable in production
