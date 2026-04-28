@@ -7,6 +7,8 @@ export const taskResolvers = () => {
     }
   }
   Mutation: {
-    
+    createTask: async (_:any, args: { name: string, desc: string }) => {
+      
+    }
   }
 }
